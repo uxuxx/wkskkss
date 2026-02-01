@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экстремальные морозы в Воронеже: 2 февраля ожидается -56°C</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a2980, #26d0ce);
+            color: white;
+            padding: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #ffeb3b;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ffeb3b;
+            text-decoration: underline;
+        }
+        
+        .article-header {
+            padding: 40px 0 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .article-header h1 {
+            font-size: 42px;
+            color: #1a2980;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .article-meta span {
+            margin: 0 15px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        article {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        article p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        article h2 {
+            color: #1a2980;
+            margin: 30px 0 20px;
+            font-size: 28px;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .temperature-display {
+            background: linear-gradient(to bottom, #1a2980, #26d0ce);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .temperature-display .temp {
+            font-size: 72px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .temperature-display .date {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .recommendations {
+            background-color: #e7f3ff;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .recommendations h3 {
+            color: #1a2980;
+            margin-bottom: 15px;
+        }
+        
+        .recommendations ul {
+            padding-left: 20px;
+        }
+        
+        .recommendations li {
+            margin-bottom: 10px;
+        }
+        
+        aside {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        aside h3 {
+            color: #1a2980;
+            margin-bottom: 20px;
+            font-size: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .forecast-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .forecast-item:last-child {
+            border-bottom: none;
+        }
+        
+        .forecast-date {
+            font-weight: 600;
+        }
+        
+        .forecast-temp {
+            color: #1a2980;
+            font-weight: 600;
+        }
+        
+        .news-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item h4 {
+            margin-bottom: 5px;
+        }
+        
+        .news-item a {
+            color: #1a2980;
+            text-decoration: none;
+        }
+        
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: #1a2980;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ffeb3b;
+        }
+        
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .article-header h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Погода<span>Воронеж</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">Прогноз</a></li>
+                        <li><a href="#">Карты</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="article-header">
+            <h1>Экстремальные морозы в Воронеже: 2 февраля ожидается -56°C</h1>
+            <div class="article-meta">
+                <span>📅 1 февраля 2024</span>
+                <span>✍️ Алексей Метелкин</span>
+                <span>🔍 3 845 просмотров</span>
+            </div>
+        </div>
+        
+        <img src="https://images.unsplash.com/photo-1612277795009-f6f3a6d0d0f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Зимний Воронеж" class="main-image">
+        
+        <div class="content">
+            <article>
+                <p>По данным Гидрометцентра России, в ночь на 2 февраля 2024 года Воронеж и всю Воронежскую область ожидает беспрецедентное похолодание. Температура воздуха может опуститься до отметки в -56°C, что станет абсолютным рекордом за всю историю метеонаблюдений в регионе.</p>
+                
+                <div class="temperature-display">
+                    <div class="date">2 февраля 2024 года</div>
+                    <div class="temp">-56°C</div>
+                    <div>Ожидаемая минимальная температура</div>
+                </div>
+                
+                <p>Аномальный холодный фронт, пришедший с арктических широт, объединился с антициклоном над центральной частью России, создав условия для экстремального похолодания. По словам ведущего метеоролога Центрального УГМС Анны Семёновой, "такие температуры не характерны для средней полосы России даже в самые суровые зимы".</p>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Экстренное предупреждение</h3>
+                    <p>Главное управление МЧС России по Воронежской области объявило высший ("красный") уровень опасности. Населению рекомендуется оставаться в помещениях, ограничить любые передвижения. Все образовательные учреждения будут закрыты 2 февраля.</p>
+                </div>
+                
+                <h2>Исторический контекст</h2>
+                <p>Предыдущий температурный рекорд Воронежа был зафиксирован в январе 1940 года, когда столбик термометра опустился до -41°C. Ожидаемое значение -56°C превзойдет этот рекорд сразу на 15 градусов, что является беспрецедентным случаем в метеорологической истории Центрального Черноземья.</p>
+                
+                <h2>Причины аномалии</h2>
+                <p>Специалисты Росгидромета объясняют это явление уникальным стечением нескольких факторов:</p>
+                <ul style="padding-left: 30px; margin-bottom: 20px;">
+                    <li>Мощный арктический антициклон, сместившийся значительно южнее обычного положения</li>
+                    <li>Отсутствие облачности, способствующее быстрому выхолаживанию приземного слоя воздуха</li>
+                    <li>Снежный покров, отражающий солнечное излучение днем</li>
+                    <li>Атмосферный блокинг, препятствующий проникновению теплых воздушных масс с Атлантики</li>
+                </ul>
+                
+                <div class="recommendations">
+                    <h3>Рекомендации для населения</h3>
+                    <ul>
+                        <li>Избегайте длительного пребывания на улице</li>
+                        <li>При необходимости выхода на улицу одевайтесь многослойно, используйте термобелье</li>
+                        <li>Прикрывайте открытые участки кожи для предотвращения обморожения</li>
+                        <li>Проверьте системы отопления в жилищах</li>
+                        <li>Имейте запас воды и продуктов на несколько дней</li>
+                        <li>Не используйте для обогрева газовые плиты и духовки из-за риска отравления угарным газом</li>
+                    </ul>
+                </div>
+                
+                <h2>Последствия для инфраструктуры</h2>
+                <p>Власти Воронежа и области предпринимают беспрецедентные меры для минимизации последствий аномальных морозов. Усилен контроль за работой теплосетей и энергосистемы. Врачи предупреждают о повышенном риске обморожений и обострения сердечно-сосудистых заболеваний.</p>
+                
+                <p>Транспортные службы готовятся к отмене большинства рейсов общественного транспорта. Аэропорт Воронежа может приостановить работу на период наиболее сильных морозов. Жителям рекомендуется следить за официальными объявлениями местных властей и МЧС.</p>
+            </article>
+            
+            <aside>
+                <h3>Прогноз на неделю</h3>
+                <div class="forecast-item">
+                    <div class="forecast-date">2 фев</div>
+                    <div class="forecast-temp">-56° / -48°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="forecast-date">3 фев</div>
+                    <div class="forecast-temp">-42° / -35°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="forecast-date">4 фев</div>
+                    <div class="forecast-temp">-30° / -25°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="forecast-date">5 фев</div>
+                    <div class="forecast-temp">-22° / -18°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="forecast-date">6 фев</div>
+                    <div class="forecast-temp">-15° / -10°</div>
+                </div>
+                
+                <h3 style="margin-top: 40px;">Другие новости</h3>
+                <div class="news-item">
+                    <h4><a href="#">Воронежские власти готовят теплые пункты обогрева</a></h4>
+                    <p>31 января 2024</p>
+                </div>
+                <div class="news-item">
+                    <h4><a href="#">Как пережить экстремальные морозы: советы врачей</a></h4>
+                    <p>30 января 2024</p>
+                </div>
+                <div class="news-item">
+                    <h4><a href="#">История температурных рекордов в Черноземье</a></h4>
+                    <p>29 января 2024</p>
+                </div>
+                <div class="news-item">
+                    <h4><a href="#">Аномальная зима 2024: причины и прогнозы</a></h4>
+                    <p>28 января 2024</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ПогодаВоронеж</h3>
+                    <p>Актуальные прогнозы погоды в Воронеже и области. Экстренные предупреждения и рекомендации.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>📧 info@pogodavrn.ru</p>
+                    <p>📞 +7 (473) 123-45-67</p>
+                    <p>📍 Воронеж, ул. Метеорологическая, 15</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Экстренные службы</h3>
+                    <p>МЧС: 112, 101</p>
+                    <p>Скорая помощь: 103</p>
+                    <p>Аварийная газовая служба: 104</p>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 14px; opacity: 0.8;">© 2024 ПогодаВоронеж. Все права защищены. Информация предоставлена для ознакомления.</p>
+        </div>
+    </footer>
+</body>
+                      </html>
